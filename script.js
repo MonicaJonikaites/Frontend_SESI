@@ -1,8 +1,8 @@
 function executarSistema() {
     // Dados de entrada
     const nome = document.getElementById("inputNome").value;
-    const idade = parseInt(document.getElementById("inputIdade")).value;
-    const valor = parseFloat(document.getElementById("inputValor")).value;
+    const idade = parseInt(document.getElementById("inputIdade").value);
+    const valor = parseFloat(document.getElementById("inputValor").value);
     const cupom = document.getElementById("inputCupom").value === "true";
 
     // Dados de saída
@@ -27,5 +27,27 @@ function executarSistema() {
         // Estoque 
         let estoque = ["Placa de Vídeo", "Processador", "Memória RAM"];
         lista.innerHTML = ""; // Limpa a lista anterior
+
+        // forEach: Percorre um array e aplica uma ação para cada elemento
+        estoque.forEach(item => {
+            let li = document.createElement("li");
+            li.innerText = `Item ${item} reservado`;
+            lista.appendChild(li); // Usado para adicionar um novo elemento ou texto
+        });
+
+        // Relatório
+        relatorio.style.display = "block";
+        relatorio.innerHTML = `
+            <strong> RESUMO DO PEDIDO <\strong><br>
+            Cliente: ${nome} <br>
+            Total Original: R$ ${valor.toFixed(2)} <br>
+            <strong> Total com Desconto: R$ ${valorFinal.toFixed(2)} <\strong>
+        `;
+    }else{
+        msg.innerText = "Venda bloqueada: Menor de 16 anos.";
+        msg.style.color = "#ff4444";
+        relatorio.style.display = "none";
+        lista.innerHTML = "";
     }
+
 }
