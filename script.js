@@ -26,6 +26,9 @@ function executarSistema() {
 
             // Desconto 
             let valorFinal = (valor > 500 || cupom) ? valor * 0.85 : valor;
+            let valorDesconto = (valor > 500 || cupom) ? valor - valorFinal : 0;
+            let valorPercentual = (valor > 500 || cupom) ? 15 : 0;
+
 
             // Estoque 
             let estoque = ["Placa de Vídeo", "Processador", "Memória RAM"];
@@ -44,7 +47,9 @@ function executarSistema() {
             <strong> RESUMO DO PEDIDO <\strong><br>
             Cliente: ${nome} <br>
             Total Original: R$ ${valor.toFixed(2)} <br>
-            <strong> Total com Desconto: R$ ${valorFinal.toFixed(2)} <\strong>
+            <strong> Total com Desconto: R$ ${valorFinal.toFixed(2)} <\strong><br>
+            <strong> Valor Economizado: R$ ${valorDesconto.toFixed(2)} <\strong><br>
+            <strong> Percentual de Desconto: ${valorPercentual}% <\strong>
         `;
         } else {
             msg.innerText = "Venda bloqueada: Menor de 16 anos.";
